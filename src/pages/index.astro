@@ -1,17 +1,45 @@
 ---
-
+import '../styles/index.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro Hello World</h1>
-	</body>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>ZakRabaza — Portfolio</title>
+	<link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+<h1>Hello, I am Zakariya o/</h1>
+<p>Junior software developer with hands-on full-stack project experience, shaped by a decade of self-sufficiency while completing his bachelor’s degree.
+	Reliable, grounded, and ready to fully commit to software development.</p>
+
+<button id="open-modal">View My Projects</button>
+
+<dialog id="projects-modal">
+	<h2>Projects</h2>
+	<a href="https://github.com/ZakRabaza/BikeOmeter.git" target="_blank">🔗 BikOmeter</a>
+	<a href="https://github.com/ZakRabaza/spire_the_slayer.git" target="_blank">🔗 Spire The Slayer</a>
+	<br />
+	<button class="close-btn" id="close-modal">Close</button>
+</dialog>
+
+<script>
+	const modal = document.getElementById('projects-modal') as HTMLDialogElement;
+	const openBtn = document.getElementById('open-modal') as HTMLButtonElement;
+	const closeBtn = document.getElementById('close-modal') as HTMLButtonElement;
+
+	openBtn.addEventListener('click', () => {
+		modal.showModal();
+	});
+
+	closeBtn.addEventListener('click', () => {
+		modal.close();
+	});
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) modal.close();
+	});
+</script>
+</body>
 </html>
