@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const categories = [
+    {
+        name: 'Web',
+        color: '--accent-3',
+        projects: [
+            { title: 'Portfolio', url: 'https://github.com/ZakRabaza/ZakRabaza.github.io', desc: 'Personal portfolio built with Astro' },
+        ],
+    },
+    {
+        name: 'Backend',
+        color: '--orange',
+        projects: [
+            { title: 'Spire The Slayer', url: 'https://github.com/ZakRabaza/spire-the-slayer', desc: 'Backend project' },
+        ],
+    },
+    {
+        name: 'Apps',
+        color: '--accent-4',
+        projects: [
+            { title: 'BikeOmeter', url: 'https://github.com/ZakRabaza/BikeOmeter.git', desc: 'BikeOmeter' },
+        ],
+    },
+];
+---
+
+<Layout title="Zak Rabaza — Projects" active="projects">
+    <div class="projects-page">
+
+        <div class="projects-sidebar">
+            <div class="projects-sidebar-title">Categories</div>
+            {categories.map((cat, i) => (
+                    <button class={`cat-btn ${i === 0 ? 'active' : ''}`} data-index={String(i)}>
+                        📂 {cat.name}
+                    </button>
+            ))}
+        </div>
+
+        <div class="projects-main">
+            {categories.map((cat, i) => (
+                    <section class={`cat-section ${i === 0 ? 'visible' : ''}`} data-section={String(i)}>
+                        <h2>{cat.name}</h2>
+                        <div class="project-grid">
+                            {cat.projects.map(p => (
+                                    <a href={p.url} target="_blank" class="project-card">
+                                        <div class="project-card-title">🔗 {p.title}</div>
+                                        <div class="project-card-desc">{p.desc}</div>
+                                    </a>
+                            ))}
+                        </div>
+                    </section>
+            ))}
+        </div>
+
+    </div>
+</Layout>
+
+<script>
+    const catBtns = document.querySelectorAll('.cat-btn');
+    const sections = document.querySelectorAll('.cat-section');
+
+    catBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            catBtns.forEach(b => b.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('visible'));
+            btn.classList.add('active');
+            const idx = (btn as HTMLElement).dataset.index;
+            document.querySelector(`.cat-section[data-section="${idx}"]`)?.classList.add('visible');
+        });
+    });
+</script>
