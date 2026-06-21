@@ -1,5 +1,7 @@
 ---
 import '../styles/index.css';
+import Background from '../components/Background.astro';
+import Sidebar from '../components/Sidebar.astro';
 
 interface Props {
     title: string;
@@ -16,24 +18,12 @@ const { title, active } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
 </head>
 <body>
+<Background />
 <div class="app">
-
-    <nav class="sidebar">
-        <div class="sidebar-logo">Zakariya</div>
-        <a href="/" class={`nav-btn ${active === 'home' ? 'active' : ''}`}>
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <a href="/projects" class={`nav-btn ${active === 'projects' ? 'active' : ''}`}>
-            <span class="nav-icon">📁</span>
-            <span class="nav-label">Projects</span>
-        </a>
-    </nav>
-
+    <Sidebar active={active} />
     <main class="content">
         <slot />
     </main>
-
 </div>
 </body>
 </html>
