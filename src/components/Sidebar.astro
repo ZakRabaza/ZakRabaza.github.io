@@ -1,5 +1,8 @@
 ---
 import Background from './Background.astro';
+import NavButton from './NavButton.astro';
+import { House, FolderOpen } from '@lucide/astro';
+
 interface Props {
     active: 'home' | 'projects';
 }
@@ -12,15 +15,13 @@ const { active } = Astro.props;
     <div class="sidebar-content">
         <div class="sidebar-logo">Zakariya</div>
 
-        <a href="/" class={`nav-btn ${active === 'home' ? 'active' : ''}`}>
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
+        <NavButton href="/" label="Home" active={active === 'home'}>
+            <House size={18} stroke-width={2} />
+        </NavButton>
 
-        <a href="/projects" class={`nav-btn ${active === 'projects' ? 'active' : ''}`}>
-            <span class="nav-icon">📁</span>
-            <span class="nav-label">Projects</span>
-        </a>
+        <NavButton href="/projects" label="Projects" active={active === 'projects'}>
+            <FolderOpen size={18} stroke-width={2} />
+        </NavButton>
 
     </div>
 </nav>
@@ -52,30 +53,4 @@ const { active } = Astro.props;
         padding: 0.5rem 0.75rem 0.75rem;
     }
 
-    .nav-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.6rem 0.9rem;
-        text-decoration: none;
-        color: #e8e6e0;
-        font-size: 0.9rem;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.04);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-        transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
-    }
-
-    .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-btn.active {
-        background: var(--orange);
-        color: #2d2d2d;
-        font-weight: bold;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
 </style>

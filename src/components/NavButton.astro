@@ -1,0 +1,46 @@
+---
+interface Props {
+    href: string;
+    label: string;
+    active: boolean;
+}
+const { href, label, active } = Astro.props;
+---
+
+<a href={href} class={`nav-btn ${active ? 'active' : ''}`}>
+    <slot />
+    <span class="nav-label">{label}</span>
+</a>
+
+<style>
+    .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.6rem 0.9rem;
+        text-decoration: none;
+        color: #e8e6e0;
+        font-size: 0.9rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-btn.active {
+        background: var(--orange);
+        color: #2d2d2d;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-btn :global(svg) {
+        flex-shrink: 0;
+    }
+</style>
