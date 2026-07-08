@@ -1,8 +1,32 @@
 ---
+import ProjectCard from './ProjectCard.astro';
+
 const projects = [
-    { title: 'Portfolio', url: 'https://github.com/ZakRabaza/ZakRabaza.github.io', desc: 'Personal portfolio built with Astro', category: 'Web' },
-    { title: 'Spire The Slayer', url: 'https://github.com/ZakRabaza/spire_the_slayer.git', desc: 'Backend project', category: 'Backend' },
-    { title: 'BikeOmeter', url: 'https://github.com/ZakRabaza/BikeOmeter.git', desc: 'BikeOmeter', category: 'Apps' },
+    {
+        title: 'BikeOmeter',
+        url: 'https://github.com/ZakRabaza/BikeOmeter.git',
+        desc: 'Mobile application',
+        image: '/images/bikeometer.png',
+        category: 'Apps',
+        technologies: ['Java','ReactNative','PostgreSQL','AWS'],
+    },
+    {
+        title: 'Spire The Slayer',
+        url: 'https://github.com/ZakRabaza/spire_the_slayer.git',
+        desc: 'Backend project',
+        image: '/images/spiretheslayer.png',
+        category: 'Backend',
+        technologies: ['Python', 'PostgreSQL'],
+    },
+    {
+        title: 'Portfolio',
+        url: 'https://github.com/ZakRabaza/ZakRabaza.github.io',
+        desc: 'Personal portfolio built with Astro',
+        image: 'https://placehold.co/640x360/ebdbb2/3c3836?text=Portfolio',
+        category: 'Web',
+        technologies: ['Astro', 'TypeScript', 'CSS'],
+    },
+
 ];
 ---
 
@@ -11,10 +35,14 @@ const projects = [
 
     <div class="project-grid">
         {projects.map(p => (
-                <a href={p.url} target="_blank" class="project-card" data-category={p.category}>
-                    <div class="project-card-title">🔗 {p.title}</div>
-                    <div class="project-card-desc">{p.desc}</div>
-                </a>
+                <ProjectCard
+                        title={p.title}
+                        url={p.url}
+                        desc={p.desc}
+                        image={p.image}
+                        category={p.category}
+                        technologies={p.technologies}
+                />
         ))}
     </div>
 </div>
@@ -34,34 +62,7 @@ const projects = [
 
     .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 1rem;
-    }
-
-    .project-card {
-        display: block;
-        text-decoration: none;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 1rem;
-        transition: border-color 0.2s, background 0.2s;
-    }
-
-    .project-card:hover {
-        border-color: var(--accent-3);
-        background: var(--bg-1);
-    }
-
-    .project-card-title {
-        color: var(--accent-3);
-        font-size: 0.95rem;
-        margin-bottom: 0.4rem;
-    }
-
-    .project-card-desc {
-        color: var(--muted);
-        font-size: 0.82rem;
-        line-height: 1.5;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
     }
 </style>

@@ -1,0 +1,103 @@
+---
+interface Props {
+    title: string;
+    url: string;
+    desc: string;
+    image: string;
+    technologies: string[];
+}
+const { title, url, desc, image, technologies } = Astro.props;
+---
+
+<a href={url} target="_blank" class="project-card">
+    <div class="project-card-image">
+        <img src={image} alt={`${title} preview`} />
+    </div>
+
+    <div class="project-card-body">
+        <div class="project-card-title">{title}</div>
+        <div class="project-card-desc">{desc}</div>
+
+        <div class="project-card-techs">
+            {technologies.map(tech => (
+                    <span class="tech-tag">{tech}</span>
+            ))}
+        </div>
+    </div>
+</a>
+
+<style>
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: border-color 0.2s, background 0.2s;
+
+        /* Inverted texture: light background, dark dots */
+        background-color: #2d2d2d;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%236a6a6a' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");        border: 1px solid var(--orange);
+    }
+
+    .project-card:hover {
+        border-color: var(--accent-3);
+        background: var(--accent-2);
+    }
+
+    /* ── Upper: image ── */
+    .project-card-image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: var(--accent-2);
+    }
+
+    .project-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+
+    .project-card:hover .project-card-image img {
+        transform: scale(1.03);
+    }
+
+    /* ── Lower: body ── */
+    .project-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .project-card-title {
+        color: var(--accent-3);
+        font-size: 0.95rem;
+        font-weight: bold;
+    }
+
+    .project-card-desc {
+        color: var(--accent-5);
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    /* ── Tech tags ── */
+    .project-card-techs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.25rem;
+    }
+
+    .tech-tag {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        background: var(--orange);
+        color: var(--text);
+        border: 1px solid var(--orange);
+    }
+</style>
